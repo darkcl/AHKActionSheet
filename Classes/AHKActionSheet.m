@@ -281,7 +281,10 @@ static const CGFloat kCancelButtonShadowHeightRatio = 0.333f;
     
     CGFloat slideDownMinOffset = (CGFloat)fmin(CGRectGetHeight(self.frame) + self.tableView.contentOffset.y, CGRectGetHeight(self.frame));
     self.tableView.transform = CGAffineTransformMakeTranslation(0, slideDownMinOffset);
-
+    if([self.tableView respondsToSelector:@selector(setCellLayoutMarginsFollowReadableWidth:)])
+    {
+        self.tableView.cellLayoutMarginsFollowReadableWidth = NO;
+    }
     void(^immediateAnimations)(void) = ^(void) {
         self.blurredBackgroundView.alpha = 1.0f;
     };
